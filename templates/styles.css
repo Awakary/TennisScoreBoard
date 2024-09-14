@@ -1,0 +1,49 @@
+.player1 {
+        background: #147062;
+        padding: 0.5em 1.5em; /* Поля по вертикали и горизонтали */
+        color: #ffffff; /* Цвет текста */
+        /*font-family: monospace; !* Моноширинный шрифт *!*/
+        font-size: 1.4em; /* Размер текста */
+        font-weight: bold; /* Жирный шрифт */
+        text-transform: uppercase; /* Все буквы заглавные */
+        margin-bottom:20px;
+        margin-top: 30px
+   }
+    .player2 {
+        background: #540cd3;
+        padding: 0.5em 1.5em; /* Поля по вертикали и горизонтали */
+        color: #ffffff; /* Цвет текста */
+        /*font-family: monospace; !* Моноширинный шрифт *!*/
+        font-size: 1.4em; /* Размер текста */
+        font-weight: bold; /* Жирный шрифт */
+        text-transform: uppercase; /* Все буквы заглавные */
+        margin-bottom:20px;
+        margin-top: 30px
+   }
+    .creater {
+        background: #595655;
+        padding: 0.5em 1.5em; /* Поля по вертикали и горизонтали */
+        color: #ffffff; /* Цвет текста */
+        /*font-family: monospace; !* Моноширинный шрифт *!*/
+        font-size: 1.4em; /* Размер текста */
+        font-weight: bold; /* Жирный шрифт */
+        text-transform: uppercase; /* Все буквы заглавные */
+        /*margin-bottom:250px;*/
+        margin-top:100px;
+   }
+    .inputer {
+        background: #ffffff;
+        padding: 0.5em 1.5em; /* Поля по вертикали и горизонтали */
+        color: #000000; /* Цвет текста */
+        /*font-family: monospace; !* Моноширинный шрифт *!*/
+        font-size: 1.4em; /* Размер текста */
+        /*font-weight: bold; !* Жирный шрифт *!*/
+        /*text-transform: uppercase; !* Все буквы заглавные *!*/
+        /*margin-bottom:250px;*/
+        margin-top:80px;
+   }
+     .img {
+     background: radial-gradient(#edf1cf, #43acb4);
+
+  }
+

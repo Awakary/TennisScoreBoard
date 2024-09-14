@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+<!--      <link rel="stylesheet" href="styles.css">-->
+      <meta charset="UTF-8">
+      <title>New match</title>
+  </head>
+  <body class="img">
+       <h1 style="text-align-last: center">Создание нового матча</h1>
+       <div style="text-align-last: center">
+           <form action='/new-match' method="post">
+                <div>
+                   <label for="player1_name" class="player1">Игрок 1</label>
+                    <input class="inputer"
+                      type="text"
+                      id="player1_name"
+                      name="player1"
+                      size="20" required
+                      placeholder="Введите имя игрока 1"
+                      minlength="2"
+                      maxlength="20" />
+                    <span class="validity"></span>
+               </div>
+               <div>
+                   <label for="player2_name"  class="player2">Игрок 2</label>
+                    <input class="inputer"
+                       type="text"
+                       id="player2_name"
+                       name="player2"
+                       size="20" required
+                       placeholder="Введите имя игрока 2"
+                       minlength="2"
+                       maxlength="20" />
+                     <span class="validity"></span>
+               </div>
+           <button type="submit" class="creater" >Начать матч </button>
+           </form>
+       </div>
+  </body>
+</html>
+<style>
+    .player1 {
+        background: #147062;
+        padding: 0.5em 1.5em; /* Поля по вертикали и горизонтали */
+        color: #ffffff; /* Цвет текста */
+        /*font-family: monospace; !* Моноширинный шрифт *!*/
+        font-size: 1.4em; /* Размер текста */
+        font-weight: bold; /* Жирный шрифт */
+        text-transform: uppercase; /* Все буквы заглавные */
+        margin-bottom:20px;
+        margin-top: 30px
+   }
+    .player2 {
+        background: #540cd3;
+        padding: 0.5em 1.5em; /* Поля по вертикали и горизонтали */
+        color: #ffffff; /* Цвет текста */
+        /*font-family: monospace; !* Моноширинный шрифт *!*/
+        font-size: 1.4em; /* Размер текста */
+        font-weight: bold; /* Жирный шрифт */
+        text-transform: uppercase; /* Все буквы заглавные */
+        margin-bottom:20px;
+        margin-top: 30px
+   }
+    .creater {
+        background: #595655;
+        padding: 0.5em 1.5em; /* Поля по вертикали и горизонтали */
+        color: #ffffff; /* Цвет текста */
+        /*font-family: monospace; !* Моноширинный шрифт *!*/
+        font-size: 1.4em; /* Размер текста */
+        font-weight: bold; /* Жирный шрифт */
+        text-transform: uppercase; /* Все буквы заглавные */
+        /*margin-bottom:250px;*/
+        margin-top:100px;
+   }
+    .inputer {
+        background: #ffffff;
+        padding: 0.5em 1.5em; /* Поля по вертикали и горизонтали */
+        color: #000000; /* Цвет текста */
+        /*font-family: monospace; !* Моноширинный шрифт *!*/
+        font-size: 1.4em; /* Размер текста */
+        /*font-weight: bold; !* Жирный шрифт *!*/
+        /*text-transform: uppercase; !* Все буквы заглавные *!*/
+        /*margin-bottom:250px;*/
+        margin-top:80px;
+   }
+     .img {
+     background: radial-gradient(#edf1cf, #43acb4);
+
+  }
+
+</style>
+
+
