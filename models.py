@@ -1,9 +1,9 @@
-from sqlalchemy.orm import DeclarativeBase
-from sqlalchemy import create_engine, ForeignKey, JSON, UUID
-from sqlalchemy.engine.url import URL
-from sqlalchemy import Column, Integer, String
-from sqlalchemy import MetaData, Table, String, Integer, Column, Text, DateTime, Boolean
 from datetime import datetime
+
+from sqlalchemy import (JSON, UUID, Boolean, Column, DateTime, ForeignKey,
+                        Integer, MetaData, String, Table, Text, create_engine)
+from sqlalchemy.engine.url import URL
+from sqlalchemy.orm import DeclarativeBase
 
 from settings import DB_URL
 

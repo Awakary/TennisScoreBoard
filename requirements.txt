@@ -7,3 +7,4 @@ python-dotenv==1.0.1
 SQLAlchemy==2.0.34
 typing_extensions==4.12.2
 uWSGI==2.0.26
+Jinja2~=3.1.4

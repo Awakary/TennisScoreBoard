@@ -1,4 +1,4 @@
-.player1 {
+    .player1 {
         background: #147062;
         padding: 0.5em 1.5em; /* Поля по вертикали и горизонтали */
         color: #ffffff; /* Цвет текста */
@@ -46,4 +46,3 @@
      background: radial-gradient(#edf1cf, #43acb4);
 
   }
-

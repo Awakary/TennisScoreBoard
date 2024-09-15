@@ -1,6 +1,8 @@
-from exceptions import (NotFullFormException, IncorrectPlayerNameException,
+import json
+
+from exceptions import (IncorrectPlayerNameException, NotFullFormException,
                         SamePlayerNameException)
-from session import get_player, create_new_match
+from session import create_new_match, get_player
 
 
 class MatchHandler:
@@ -9,7 +11,7 @@ class MatchHandler:
         self.player1 = players.get('player1', None)
         self.player2 = players.get('player2', None)
 
-    def post(self):
+    def get_match(self):
         if not (self.player1 and self.player2):
             raise NotFullFormException()
         if self.player1.isdigit() or self.player2.isdigit():
@@ -18,7 +20,11 @@ class MatchHandler:
             raise SamePlayerNameException()
         player1_id = get_player(self.player1)
         player2_id = get_player(self.player2)
-        new_match_uuid = create_new_match(player1_id, player2_id)
+        new_match = create_new_match(player1_id, player2_id)
+        setattr(new_match, 'player1_name', self.player1)
+        setattr(new_match, 'player2_name', self.player2)
+        new_match.score = json.loads(new_match.score)
+        return new_match
 
 
 

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" class="img">
+  <head>
+<!--      <link rel="stylesheet" type="text/css" href="styles.css">-->
+      <meta charset="UTF-8">
+      <title>Match score</title>
+  </head>
+  <body class="img" >
+       <h1 style="text-align-last: center">Match score {{match.player1_name}} vs {{match.player2_name}} </h1>
+       <div style="text-align-last: center">
+    <table class="table">
+           <tr>
+               <th>Players</th>
+               {% for key in match.score.player1 %}
+               <th> {{ key }}</th>
+               {% endfor %}
+           </tr>
+           <tr>
+               <th>
+                   <form action='/match_score' method="post">
+                    <div>
+                        <button
+                        class="player1"
+                        type="submit"
+                        name="player1"
+                        value="{{match.player1}}">{{match.player1_name}}
+                       <input type="hidden" name="uuid" value="{{match.uuid}}">
+                       </button>
+                    </div>
+                 </form>
+               </th>
+               {% for value in match.score.player1.values() %}
+               <th>{{ value }}</th>
+               {% endfor %}
+           </tr>
+           <tr>
+               <th>
+                   <form action='/match_score' method="post">
+                    <div>
+                        <button
+                        class="player2"
+                        type="submit"
+                        name="player2"
+                        value="{{match.player2}}">{{match.player2_name}}
+                       <input type="hidden" name="uuid" value="{{match.uuid}}">
+                       </button>
+                    </div>
+                 </form>
+               </th>
+               {% for value in match.score.player2.values() %}
+               <th>{{ value }}</th>
+               {% endfor %}
+           </tr>
+    </table>
+           </div>
+  </body>
+</html>
+<style>
+    .player1 {
+        background: radial-gradient(#540cd3, #147062);
+        padding: 0.5em 1.5em; /* Поля по вертикали и горизонтали */
+        color: #ffffff; /* Цвет текста */
+        /*font-family: monospace; !* Моноширинный шрифт *!*/
+        font-size: 1.4em; /* Размер текста */
+        font-weight: bold; /* Жирный шрифт */
+        /*text-transform: uppercase; !* Все буквы заглавные *!*/
+        margin-bottom:20px;
+        margin-top: 30px;
+        width: 250px
+   }
+    .player2 {
+        background: radial-gradient(#540cd3, #147062);
+        padding: 0.5em 1.5em; /* Поля по вертикали и горизонтали */
+        color: #ffffff; /* Цвет текста */
+        /*font-family: monospace; !* Моноширинный шрифт *!*/
+        font-size: 1.4em; /* Размер текста */
+        font-weight: bold; /* Жирный шрифт */
+        /*text-transform: uppercase; !* Все буквы заглавные *!*/
+        margin-bottom:20px;
+        margin-top: 30px;
+        width: 250px
+   }
+    .creater {
+        background: #595655;
+        padding: 0.5em 1.5em; /* Поля по вертикали и горизонтали */
+        color: #ffffff; /* Цвет текста */
+        /*font-family: monospace; !* Моноширинный шрифт *!*/
+        font-size: 1.4em; /* Размер текста */
+        font-weight: bold; /* Жирный шрифт */
+        text-transform: uppercase; /* Все буквы заглавные */
+        /*margin-bottom:250px;*/
+        margin-top:100px;
+   }
+    .inputer {
+        background: #ffffff;
+        padding: 0.5em 1.5em; /* Поля по вертикали и горизонтали */
+        color: #000000; /* Цвет текста */
+        /*font-family: monospace; !* Моноширинный шрифт *!*/
+        font-size: 1.4em; /* Размер текста */
+        /*font-weight: bold; !* Жирный шрифт *!*/
+        /*text-transform: uppercase; !* Все буквы заглавные *!*/
+        /*margin-bottom:250px;*/
+        margin-top:80px;
+   }
+     .img {
+         background: radial-gradient(#2d2247, #aeb1b5);
+     /*background: radial-gradient(circle, #a464c3, #909ea6);*/
+
+  }
+  /*   .table {*/
+  /*  width: 300px;*/
+  /*  color: #000000;*/
+  /*       bgcolor: #000000;*/
+  /*  !* центрируем таблицу *!*/
+  /*  margin: auto;*/
+  /*  !* выравнивание текста внутри ячеек *!*/
+  /*  text-align: center;*/
+  /*  !* делаем границы красивыми *!*/
+  /*  border-collapse: collapse;*/
+  /*  !*!* делаем видимыми границы у таблицы *!*!*/
+  /*  !*border: 1px solid #333;*!*/
+  /*}*/
+    table {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 20px;
+            margin: auto;
+    border-collapse: collapse;
+    text-align: center;
+    }
+    th, td:first-child {
+    background: radial-gradient(#ffffff, #c4c2c6);
+    color: #000000;
+
+    padding: 10px 20px;
+    }
+    th, td {
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    border-color: rgba(80, 78, 78, 0.37);
+    }
+    td {
+    background: #000000;
+    }
+    th:first-child, td:first-child {
+    text-align: left;
+    }
+</style>
+
+

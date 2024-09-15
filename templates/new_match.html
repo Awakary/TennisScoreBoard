@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" >
   <head>
-<!--      <link rel="stylesheet" href="styles.css">-->
+      <link rel="stylesheet" type="text/css" href="styles.css">
       <meta charset="UTF-8">
       <title>New match</title>
   </head>
   <body class="img">
-       <h1 style="text-align-last: center">Создание нового матча</h1>
+       <h1 style="text-align-last: center">New match</h1>
        <div style="text-align-last: center">
            <form action='/new-match' method="post">
                 <div>
-                   <label for="player1_name" class="player1">Игрок 1</label>
+                   <label for="player1_name" class="player1">Player 1</label>
                     <input class="inputer"
                       type="text"
                       id="player1_name"
@@ -22,7 +22,7 @@
                     <span class="validity"></span>
                </div>
                <div>
-                   <label for="player2_name"  class="player2">Игрок 2</label>
+                   <label for="player2_name"  class="player2">Player 2</label>
                     <input class="inputer"
                        type="text"
                        id="player2_name"
@@ -32,14 +32,14 @@
                        maxlength="20" />
                      <span class="validity"></span>
                </div>
-           <button type="submit" class="creater" >Начать матч </button>
+           <button type="submit" class="creater">Create new match</button>
            </form>
        </div>
   </body>
 </html>
 <style>
     .player1 {
-        background: #147062;
+        background: radial-gradient(#540cd3, #147062);
         padding: 0.5em 1.5em; /* Поля по вертикали и горизонтали */
         color: #ffffff; /* Цвет текста */
         /*font-family: monospace; !* Моноширинный шрифт *!*/
@@ -50,7 +50,7 @@
         margin-top: 30px
    }
     .player2 {
-        background: #540cd3;
+        background: radial-gradient(#540cd3, #147062);
         padding: 0.5em 1.5em; /* Поля по вертикали и горизонтали */
         color: #ffffff; /* Цвет текста */
         /*font-family: monospace; !* Моноширинный шрифт *!*/
@@ -61,7 +61,7 @@
         margin-top: 30px
    }
     .creater {
-        background: #595655;
+        background: radial-gradient(#540cd3, #147062);
         padding: 0.5em 1.5em; /* Поля по вертикали и горизонтали */
         color: #ffffff; /* Цвет текста */
         /*font-family: monospace; !* Моноширинный шрифт *!*/
@@ -83,10 +83,9 @@
         margin-top:80px;
    }
      .img {
-     background: radial-gradient(#edf1cf, #43acb4);
+     background: radial-gradient(#d9dfe3, #687177);
 
   }
-
 </style>
 
 
