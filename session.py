@@ -60,7 +60,7 @@ def update_match(match):
     with Session(autoflush=False, bind=engine, expire_on_commit=False) as db:
         match_db = db.query(Match).get(match.id)
         match_db.score = json.dumps(match.score)
-        print(match_db.score, '1111111111111111111111')
+        match_db.winner = match.winner
         db.commit()
         return match_db
 
