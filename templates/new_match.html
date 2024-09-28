@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" >
   <head>
+      <link rel=stylesheet type="text/css" href="../static/normalize.css">
       <link rel=stylesheet type="text/css" href="../static/styles.css">
       <meta charset="UTF-8">
       <title>New match</title>
   </head>
-  <body class="img">
+  <body class="cover">
        <h1 style="text-align-last: center">New match</h1>
        <div style="text-align-last: center">
-           <form action='/new-match' method="post">
+           <form action='/new_match' method="post">
                 <div>
                    <label for="player1_name" class="player1">Player 1</label>
                     <input class="inputer"
@@ -22,7 +23,7 @@
                     <span class="validity"></span>
                </div>
                <div>
-                   <label for="player2_name"  class="player2">Player 2</label>
+                   <label for="player2_name"  class="player1">Player 2</label>
                     <input class="inputer"
                        type="text"
                        id="player2_name"

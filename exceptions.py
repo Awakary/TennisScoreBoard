@@ -14,4 +14,10 @@ class SamePlayerNameException(Exception):
         self.message = 'Укажите разные имена игроков'
 
 
+class NotFoundPathException(Exception):
+    def __init__(self):
+        self.message = 'Нет такого url'
+
+
+
 

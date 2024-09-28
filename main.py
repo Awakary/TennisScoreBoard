@@ -5,8 +5,10 @@ from wsgiref.util import setup_testing_defaults
 
 from jinja2 import Environment, FileSystemLoader
 
-from controller import MatchHandler
+from handlers import MatchHandler
+from pagination import Pagination
 from service import Service
+from session import get_finished_matches
 
 
 def content_type(path):
@@ -28,6 +30,25 @@ def simple_app(environ, start_response):
     file_loader = FileSystemLoader('templates')
     env = Environment(loader=file_loader)
 
+    if environ['PATH_INFO'] == '/matches':
+
+        if environ['REQUEST_METHOD'] == 'POST':
+            request_body_size = int(environ.get('CONTENT_LENGTH', 0))
+            request_body = environ['wsgi.input'].read(request_body_size)
+            values = parse_qs(request_body)
+            params = {k.decode(): v[0].decode() for k, v in values.items()}
+            matches = get_finished_matches(params=params)
+            page_number = params.get('page_number', 1)
+        else:
+            matches = get_finished_matches()
+            page_number = 1
+        template = env.get_template('matches.html')
+        pagination_matches = Pagination(queryset=matches)
+        count_pages = pagination_matches.get_count_pages()
+        rendered_matches = pagination_matches.get_objects_for_page(queryset=matches, page_number=page_number)
+        html_as_bytes = template.render(matches=rendered_matches, count_pages=count_pages).encode('utf-8')
+        return [html_as_bytes]
+
     if environ['PATH_INFO'] == '/match_score':
         if environ['REQUEST_METHOD'] == 'GET':
             return ['GET'.encode('utf-8')]
@@ -41,7 +62,11 @@ def simple_app(environ, start_response):
             html_as_bytes = template.render(match=match).encode('utf-8')
             return [html_as_bytes]
 
-    if environ['PATH_INFO'] == '/new-match':
+    if environ['PATH_INFO'] == '/new_match':
+        if environ['REQUEST_METHOD'] == 'GET':
+            template = env.get_template('new_match.html')
+            html_as_bytes = template.render().encode('utf-8')
+            return [html_as_bytes]
         if environ['REQUEST_METHOD'] == 'POST':
             request_body_size = int(environ.get('CONTENT_LENGTH', 0))
             request_body = environ['wsgi.input'].read(request_body_size)
@@ -52,7 +77,17 @@ def simple_app(environ, start_response):
             template = env.get_template('match_score.html')
             html_as_bytes = template.render(match=match).encode('utf-8')
             return [html_as_bytes]
-    if environ['PATH_INFO'].endswith(".css"):
+    if environ['PATH_INFO'].endswith("normalize.css"):
+        resp_file = 'static/normalize.css'
+        try:
+            with open(resp_file, "r") as f:
+                resp_file = f.read().encode('utf-8')
+
+                return [resp_file]
+        except Exception:
+            start_response("404 Not Found", headers)
+            return ["404 Not Found"]
+    if environ['PATH_INFO'].endswith("styles.css"):
         resp_file = 'static/styles.css'
         try:
             with open(resp_file, "r") as f:
@@ -62,11 +97,21 @@ def simple_app(environ, start_response):
         except Exception:
             start_response("404 Not Found", headers)
             return ["404 Not Found"]
+    if environ['PATH_INFO'].endswith("jpg"):
+        resp_file = 'static/images/fon.jpg'
+        headers.append(("Cache-Control", 'public'))
+        try:
+            with open(resp_file, "rb") as f:
+                resp_file = f.read()
+
+                return [resp_file]
+        except Exception:
+            start_response("404 Not Found", headers)
+            return ["404 Not Found"]
     # if environ['PATH_INFO'] == '/new-match':
-    if environ['REQUEST_METHOD'] == 'GET':
-        template = env.get_template('new_match.html')
-        html_as_bytes = template.render().encode('utf-8')
-        return [html_as_bytes]
+    template = env.get_template('index.html')
+    html_as_bytes = template.render().encode('utf-8')
+    return [html_as_bytes]
 
 
 with make_server('', 8000, simple_app) as httpd:
