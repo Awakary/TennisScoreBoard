@@ -81,7 +81,7 @@ body {
 }
 
 .page_text {
-    color: #ffffff; /* ��вет текста */
+    color: #131975; /* ��вет текста */
     font-size: 1.3em; /* Размер текста */
     font-weight: bold; /* ��ирный шрифт */
     margin: 0;
@@ -119,6 +119,19 @@ body {
     border: 1px solid #f1f1f1;
 }
 
+.main_button {
+    background: #131975;
+    padding: 0.5em 1.5em;
+    color: #ffffff;
+    font-size: 1.0em;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 1px solid #f1f1f1;
+    text-align-last: left;
+    /*margin-top: 80px;*/
+    /*margin-bottom: 80px;*/
+}
+
 .inputer {
     background: #ffffff;
     padding: 0.5em 1.5em;
@@ -138,6 +151,7 @@ body {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
 
 .block {
 
@@ -165,7 +179,7 @@ body {
      background: -webkit-linear-gradient(#62a0ea,#3d5469,#971be5);
 }
 .items {
-    margin-top: 50px
+    margin-top: 80px
 }
 
 .table {
@@ -174,10 +188,10 @@ body {
     margin: auto;
     border-collapse: collapse;
     text-align: center;
-    margin-top:50px;
+    margin-top:30px;
 }
 th, td:first-child {
-    background: radial-gradient(#ffffff, #c4c2c6);
+    background: radial-gradient(#ffffff, #dad8dc);
     color: #000000;
     padding: 10px 20px;
 }

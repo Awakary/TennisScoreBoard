@@ -1,20 +1,24 @@
+class ExceptionWithMessage(Exception):
+    def __init__(self):
+        self.message = 'Ошибка'
 
-class NotFullFormException(Exception):
+
+class NotFullFormException(ExceptionWithMessage):
     def __init__(self):
         self.message = 'Количество имен игроков не равно 2'
 
 
-class IncorrectPlayerNameException(Exception):
+class IncorrectPlayerNameException(ExceptionWithMessage):
     def __init__(self):
         self.message = 'Имена игороков не могут состоять только из цифр'
 
 
-class SamePlayerNameException(Exception):
+class SamePlayerNameException(ExceptionWithMessage):
     def __init__(self):
         self.message = 'Укажите разные имена игроков'
 
 
-class NotFoundPathException(Exception):
+class NotFoundPathException(ExceptionWithMessage):
     def __init__(self):
         self.message = 'Нет такого url'
 

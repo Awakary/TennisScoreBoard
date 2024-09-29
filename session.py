@@ -1,10 +1,10 @@
 import json
 import uuid
 
-from sqlalchemy import create_engine, func, table
-from sqlalchemy import or_
+from sqlalchemy import create_engine, func, or_, table
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.sql import text
+
 from models import Match, Player
 from settings import DB_URL
 

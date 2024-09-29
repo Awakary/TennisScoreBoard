@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+      <link rel=stylesheet type="text/css" href="../static/normalize.css">
+      <link rel=stylesheet type="text/css" href="../static/styles.css">
+      <meta charset="UTF-8">
+      <title>Error</title>
+  </head>
+  <body class="img">
+    <h1 style="text-align-last: center">Error</h1>
+     <div style="text-align-last: center">
+          <h2 style="text-align-last: center">{{error.message}}</h2>
+          <div class="items">
+              {% if error.message != 'Нет такого url' %}
+                  <div style="margin-top: 20px">
+                   <a href={{error.path}} class="creater">Back <<</a>
+                  </div>
+              {% endif %}
+              <div style="margin-top: 80px">
+              <a href='/' class="creater">Main page <<</a>
+              </div>
+          </div>
+     </div>
+  </body>
+</html>
+
+
+
+
