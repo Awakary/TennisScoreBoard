@@ -60,7 +60,15 @@ body {
     color: #131975; /* Цвет текста */
     font-size: 1.3em; /* Размер текста */
     font-weight: bold; /* Жирный шрифт */
-    margin-bottom:5px;
+    margin-bottom:10px;
+    margin-top:10px;
+}
+
+.white_text {
+    color: #ffffff; /* Цвет текста */
+    font-size: 1.3em; /* Размер текста */
+    font-weight: bold; /* Жирный шрифт */
+    margin-bottom:10px;
     margin-top:10px;
 }
 
@@ -107,7 +115,18 @@ body {
     transition: background 0.3s ease-in-out;
     box-shadow: 2px 2px 2px 1px #000000;
 }
-
+.page_current {
+   background: #147062;
+    padding: 0.25em 0.5em;
+    color: #ffffff;
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0;
+    border: 1px solid #f1f1f1;
+    border-radius: 0.25em;
+    transition: background 0.3s ease-in-out;
+}
 .creater {
     background: #131975;
     padding: 0.5em 1.5em;
@@ -176,7 +195,8 @@ body {
 }
 
 .img2 {
-     background: -webkit-linear-gradient(#62a0ea,#3d5469,#971be5);
+     background: -webkit-linear-gradient(#62a0ea,#3d5469, #a57fbd);
+     height: 100vh
 }
 .items {
     margin-top: 80px
@@ -191,7 +211,7 @@ body {
     margin-top:30px;
 }
 th, td:first-child {
-    background: radial-gradient(#ffffff, #dad8dc);
+    background: radial-gradient(#ffffff, #d6d5d8);
     color: #000000;
     padding: 10px 20px;
 }

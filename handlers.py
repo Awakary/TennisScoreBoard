@@ -6,7 +6,7 @@ from exceptions import (IncorrectPlayerNameException, NotFullFormException,
 from pagination import Pagination
 from render import Render
 from service import Service
-from session import create_new_match, get_finished_matches, get_player
+from session import DAO
 
 
 class Handler:
@@ -39,27 +39,33 @@ class MainPageHandler(Handler):
 class MatchesHandler(Handler):
 
     def get(self):
-        matches = get_finished_matches()
+        matches = DAO().get_finished_matches()
+        players = DAO().get_players()
         pagination = Pagination(queryset=matches, page_number=1)
         pagination_matches = pagination.get_objects_for_page()
         return Render().render_template(file_name='matches.html',
                                         pagination=pagination,
-                                        render_objects=pagination_matches)
+                                        render_objects={'matches': pagination_matches,
+                                                        'players': players})
 
     def post(self):
         params = Parser.parse_params(self.body, self.body_size)
-        matches = get_finished_matches(params=params)
+        matches = DAO().get_finished_matches(params=params)
+        players = DAO(). get_players()
         page_number = params.get('page_number', 1)
         last_page = params.get('last_page', None)
         back_page = params.get('back_page', None)
+        filtered_param = params.get('filtered_param', None)
         pagination = Pagination(queryset=matches,
                                 last_page=last_page,
-                                back_page = back_page,
-                                page_number=page_number)
+                                back_page=back_page,
+                                page_number=page_number,
+                                filtered_param=filtered_param)
         pagination_matches = pagination.get_objects_for_page()
         return Render().render_template(file_name='matches.html',
                                         pagination=pagination,
-                                        render_objects=pagination_matches)
+                                        render_objects={'matches': pagination_matches,
+                                                        'players': players})
 
 
 class NewMatchHandler(Handler):
@@ -76,7 +82,7 @@ class NewMatchHandler(Handler):
             raise IncorrectPlayerNameException()
         if player1 == player2:
             raise SamePlayerNameException()
-        new_match = create_new_match(get_player(player1), get_player(player2))
+        new_match = DAO().create_new_match(DAO().get_player(player1), DAO().get_player(player2))
         new_match.score = json.loads(new_match.score)
         return Render().render_template(file_name='match_score.html',
                                         render_objects=new_match)
@@ -89,7 +95,7 @@ class MatchScoreHandler(Handler):
     #                                     render_objects=match)
     def post(self):
         params = Parser.parse_params(self.body, self.body_size)
-        match = Service().calculate_match_score(params)
+        match = Service(params).process_tennis()
         return Render().render_template(file_name='match_score.html',
                                         render_objects=match)
 

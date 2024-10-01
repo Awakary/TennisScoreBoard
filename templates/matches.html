@@ -11,20 +11,21 @@
             <a href='/' class="main_button">Main page <<</a>
  </div>
  <h1 style="text-align-last: center">Finished matches</h1>
-
  <div style="text-align-last: center">
     <form action='/matches' method="post">
-        <label>
-         <input class="inputer"
-          type="text"
-          name="player_name"
-          size="20" required
-          placeholder="Введите имя игрока 1"
-          minlength="2"
-          maxlength="20" />
-         <span class="validity"></span>
-        </label>
-        <button type="submit" class="creater">Filter by player name</button>
+         <select class="inputer" name="filtered_param">
+             {% if pagination.filtered_param %}
+             <option   value=''>{{pagination.filtered_param}}</option>
+             {% else %}
+             <option   value=''>Selected player name</option>
+             {% endif %}
+             {% for player in players %}
+             <option  value="{{player.name}}">
+                 {{player.name }}
+             </option>
+              {% endfor %}
+              </select>
+    <button type="submit"  class ="creater"  > Filter by player name</button>
     </form>
     <form action ='/matches' method="get">
         <button class="creater">All matches </button>
@@ -34,28 +35,26 @@
  {% if matches %}
     <table class="table">
                <tr>
-                   <th class="text">№ п/п</th>
+                   <th class="text">Number</th>
                    <th class="text">Player1</th>
                    <th class="text">Player2</th>
                     <th class="text">Winner &#127942;</th>
                </tr>
                 <tr>
                    {% for match in matches %}
-                   <th style="text-align-last: center">
-                       {{ loop.index + pagination.page_size * pagination.page_number - pagination.page_size}}
-<!--                       {{match.id}}-->
-                   </th>
-                    <th style="text-align-last: center">
-                          {{ match.Player1.name}}
-
-                   </th>
-                    <th>
-                    {{ match.Player2.name}}
-                         </th>
-                    <th>
-                    {{ match.Winner.name}}
-                         </th>
-
+                       <th style="text-align-last: center">
+                           {{ loop.index + pagination.page_size * pagination.page_number -
+                           pagination.page_size}}
+                       </th>
+                        <th style="text-align-last: center">
+                              {{ match.Player1.name}}
+                       </th>
+                        <th>
+                        {{ match.Player2.name}}
+                             </th>
+                        <th>
+                        {{ match.Winner.name}}
+                             </th>
                 </tr>
       {% endfor %}
         </table>
@@ -73,15 +72,26 @@
                         >
                              back <<
                         {% endif %}
-                        {% if page % 5 == 0 and page != pagination.start_page %}
-                            <button
+                        {% if page % 5 == 0 and page != pagination.start_page and
+                             pagination.count_pages > pagination.last_page %}
+                           {% if page  == pagination.page_number %}
+                             <button
+                                class="page_current"
+                                type="submit"
+                                name="page_number"
+                                value="{{ page}}"
+                             >
+                                 {{ page }}
+                             {% else  %}
+                             <button
                             class="page_button"
                             type="submit"
                             name="page_number"
                             value="{{ page}}"
-                        >
-                            {{ page }}
-                        </button>
+                            >
+                           {{ page }}
+                             </button>
+                           {% endif %}
                           <button
                             class="page_button"
                             type="submit"
@@ -91,22 +101,34 @@
                             >> next
                         </button>
                       {% else %}
-                       <button
+                            {% if page  == pagination.page_number %}
+                             <button
+                                class="page_current"
+                                type="submit"
+                                name="page_number"
+                                value="{{ page}}"
+                             >
+                                 {{ page }}
+                             {% else  %}
+                             <button
                             class="page_button"
                             type="submit"
                             name="page_number"
                             value="{{ page}}"
-                        >
-                         {{ page }}
-                       </button>
-                         {% endif %}
+                            >
+                           {{ page }}
+                             </button>
+                           {% endif %}
+                      {% endif %}
                     {% endfor %}
-
+            {% if pagination.filtered_param %}
+             <input type="hidden" name="filtered_param"  value="{{pagination.filtered_param}}">
+             {% endif %}
             </div>
         </form>
     </div>
   {% else %}
-    <h1 style="text-align-last: center">No matches</h1>
+    <h1 style="text-align-last: center" class="white_text_big">No matches</h1>
   {% endif %}
 </body>
 </html>

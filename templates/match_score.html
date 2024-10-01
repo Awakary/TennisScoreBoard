@@ -1,12 +1,12 @@
 <!DOCTYPE html >
 <html lang="en" >
-  <head class="img2" >
+  <head >
       <link rel=stylesheet type="text/css" href="../static/normalize.css">
       <link rel=stylesheet type="text/css" href="../static/styles.css">
       <meta charset="UTF-8">
       <title>Match score</title>
   </head>
-  <body class="cover">
+  <body class="img2">
         <div style="margin-top: 20px">
             <a href='/' class="main_button">Main page <<</a>
         </div>
@@ -28,7 +28,12 @@
                <th>
                    <form action='/match_score' method="post">
                     <div >
+                        <div class="row">
                         <p class="text">{{match.Player1.name}}</p>
+                         {% if match.player1 == match.winner %}
+                        <p> &#127942 </p>
+                        {% endif %}
+                        </div>
                         {% if not match.winner %}
                         <button
                             class="ball"
@@ -42,16 +47,19 @@
                  </form>
                </th>
                {% for key, value in match.score.player1.items() %}
-<!--                {% if key != "tie_break" %}-->
                  <th> {{ value }}</th>
-<!--                {% endif %}-->
                {% endfor %}
            </tr>
            <tr>
                <th>
                    <form action='/match_score' method="post">
                     <div>
+                        <div class="row">
                         <p class="text">{{match.Player2.name}}</p>
+                        {% if match.player2 == match.winner %}
+                        <p> &#127942 </p>
+                        {% endif %}
+                        </div>
                         {% if not match.winner %}
                         <button
                             class="ball"
@@ -65,15 +73,12 @@
                  </form>
                </th>
                {% for key, value in match.score.player2.items() %}
-               {% if key != "tie_break" %}
                <th>{{ value }}</th>
-               {% endif %}
                {% endfor %}
            </tr>
     </table>
            {% if match.winner %}
-           <h1 class="text"> Match finished</h1>
-           <h1 class="text"> Winner: {{match.Winner.name}}</h1>
+           <h1 class="white_text_big"> Match finished</h1>
            {% endif %}
        </div>
   </body>
@@ -98,6 +103,8 @@
 </style>
 <script>
     const img = new Image (); img.src="/static/images/fon.jpg";
-</script>
 
+
+
+</script>
 
