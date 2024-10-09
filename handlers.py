@@ -2,7 +2,7 @@ import json
 from parser import Parser
 
 from exceptions import (IncorrectPlayerNameException, NotFullFormException,
-                        SamePlayerNameException)
+                        SamePlayerNameException, NotFoundMatch)
 from pagination import Pagination
 from render import Render
 from service import Service
@@ -95,7 +95,14 @@ class MatchScoreHandler(Handler):
     #                                     render_objects=match)
     def post(self):
         params = Parser.parse_params(self.body, self.body_size)
-        match = Service(params).process_tennis()
+        match_uuid = params.get('uuid', None)
+        match = DAO().get_match(match_uuid)
+        try:
+            match = Service(params=params, match=match).process_tennis()
+            match = DAO().update_match(match)
+            match.score = json.loads(match.score)
+        except AttributeError:
+            raise NotFoundMatch()
         return Render().render_template(file_name='match_score.html',
                                         render_objects=match)
 

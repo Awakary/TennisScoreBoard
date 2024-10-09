@@ -1,6 +1,7 @@
 from exceptions import NotFoundPathException
-from handlers import (MatchesHandler, MatchScoreHandler, NewMatchHandler, MainPageHandler,
-                      NormalizeHandler, StylesHandler, FonHandler)
+from handlers import (FonHandler, MainPageHandler, MatchesHandler,
+                      MatchScoreHandler, NewMatchHandler, NormalizeHandler,
+                      StylesHandler)
 
 
 class Router:

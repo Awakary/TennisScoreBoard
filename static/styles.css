@@ -32,20 +32,8 @@ body {
    height: 100%;
 }
 
-.player1 {
+.player {
     background: #146570;
-    padding: 0.5em 1.5em;
-    color: #ffffff;
-    font-size: 1.4em;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-bottom:20px;
-    margin-top: 30px;
-    border: 1px solid #f1f1f1;
-}
-
-.player2 {
-    background: #421591;
     padding: 0.5em 1.5em;
     color: #ffffff;
     font-size: 1.4em;
@@ -74,13 +62,10 @@ body {
 
 .ball {
     background: radial-gradient(#540cd3, #147062);
-    /*padding: 0.5em 1.5em; !* Поля по вертикали и горизонтали *!*/
     color: #ffffff; /* Цвет текста */
     text-align: left;
-    /*font-family: monospace; !* Моноширинный шрифт *!*/
     font-size: 1.4em; /* Размер текста */
     font-weight: bold; /* Жирный шрифт */
-    /*text-transform: uppercase; !* Все буквы заглавные *!*/
     margin-bottom:30px;
     margin-top:5px;
     width: 110px;
@@ -147,8 +132,19 @@ body {
     text-transform: uppercase;
     border: 1px solid #f1f1f1;
     text-align-last: left;
-    /*margin-top: 80px;*/
-    /*margin-bottom: 80px;*/
+}
+
+.back_button {
+    background: #131975;
+    padding: 0.5em 1.5em;
+    color: #ffffff;
+    font-size: 1.0em;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 1px solid #f1f1f1;
+    text-align-last: center;
+    display:inline-block;
+    width: 140px;
 }
 
 .inputer {
@@ -172,29 +168,11 @@ body {
 }
 
 
-.block {
-
-}
-.block__header {
-
-}
-.header {}
-.header__title {}
-.header__subtitle {}
-.header__subtitle_active {}
-
-.block__body {
-
-}
-.block__footer {
-
-}
-
-.img {
+.purple_fon {
     background: radial-gradient(#b5b5ad, rgba(107, 112, 184, 0.82));
 }
 
-.img2 {
+.green_fon {
      background: -webkit-linear-gradient(#62a0ea,#3d5469, #447c73);
      height: 100vh
 }
@@ -211,7 +189,7 @@ body {
     margin-top:30px;
 }
 th, td:first-child {
-    background: radial-gradient(#ffffff, #d6d5d8);
+    background: radial-gradient(#ffffff, #c3c2c5);
     color: #000000;
     padding: 10px 20px;
 }
@@ -226,4 +204,3 @@ td {
 th:first-child, td:first-child {
     text-align: left;
 }
-.my-some-class{overflow: hidden; width: 100px; height: 100px;}

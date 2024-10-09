@@ -23,5 +23,14 @@ class NotFoundPathException(ExceptionWithMessage):
         self.message = 'Нет такого url'
 
 
+class NotFoundMatch(ExceptionWithMessage):
+    def __init__(self):
+        self.message = 'Нет матча с таким uuid'
+
+class UnknownErrorException(ExceptionWithMessage):
+    def __init__(self, e):
+        self.message = e
+
+
 
 

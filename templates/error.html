@@ -6,14 +6,18 @@
       <meta charset="UTF-8">
       <title>Error</title>
   </head>
-  <body class="img">
+  <body class="purple_fon">
     <h1 style="text-align-last: center">Error</h1>
      <div style="text-align-last: center">
           <h2 style="text-align-last: center">{{error.message}}</h2>
           <div class="items">
               {% if error.message != 'Нет такого url' %}
                   <div style="margin-top: 20px">
-                   <a href={{error.path}} class="creater">Back <<</a>
+                      {% if error.message == 'Нет матча с таким uuid' %}
+                          <a href='/new_match' class="creater">Back <<</a>
+                      {% else %}
+                      <a href={{error.path}} class="creater">Back <<</a>
+                      {% endif %}
                   </div>
               {% endif %}
               <div style="margin-top: 80px">

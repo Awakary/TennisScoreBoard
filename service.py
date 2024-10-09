@@ -4,25 +4,24 @@ from session import DAO
 
 
 class Service:
-    def __init__(self, params):
+    def __init__(self, params, match):
         self.params = params
-        self.match = self.find_match()
+        self.match = match
         self.tai_brake = False
         self.end_game = False
         self.player1 = params.get('player1', None)
         self.player2 = params.get('player2', None)
         self.score_dict = json.loads(self.match.score)
         self.player_score = self.get_player_score()
-        self.dict_points = {0: 0, 15: 15, 30: 30, 40: 40, 'AD': 'AD'}
 
     def process_tennis(self):
         if (self.score_dict['player1']['points'] == 40 and
                 self.score_dict['player2']['points'] == 40):
-            self.check_forty()
+            self.change_forty_to_AD()
         elif self.score_dict['player1']['points'] == 'AD':
-            self.check_AD_1()
+            self.change_AD_to_forty_1()
         elif self.score_dict['player2']['points'] == 'AD':
-            self.check_AD_2()
+            self.change_AD_to_forty_2()
         elif (self.score_dict['player2']['games'] == 6  # тайбрейк
               and self.score_dict['player1']['games'] == 6):
             self.process_tai_brake()
@@ -30,12 +29,8 @@ class Service:
             self.process_game()
         self.check_advantage()
         self.determine_winner()
-        return self.update_match_in_db()
-
-    def find_match(self):
-        match_uuid = self.params.get('uuid', None)
-        if match_uuid:
-            return DAO().get_match(match_uuid)
+        # return self.update_match_in_db()
+        return self.match
 
     def get_player_score(self):
 
@@ -68,29 +63,24 @@ class Service:
             self.score_dict['player1']['points'] = 0
             self.score_dict['player2']['points'] = 0
 
-    def check_forty(self):
-            if self.player1:
-                self.score_dict['player1']['points'] = 'AD'
-            if self.player2:
-                self.score_dict['player2']['points'] = 'AD'
-
-    def check_AD_1(self):
+    def change_forty_to_AD(self):
+        if self.player1:
+            self.score_dict['player1']['points'] = 'AD'
         if self.player2:
-            print(2)
+            self.score_dict['player2']['points'] = 'AD'
+
+    def change_AD_to_forty_1(self):
+        if self.player2:
             self.score_dict['player1']['points'] = 40
         if self.player1:
-            print(3)
             self.score_dict['player1']['points'] = 0
             self.score_dict['player2']['points'] = 0
             self.score_dict['player1']['games'] += 1
 
-    def check_AD_2(self):
-
+    def change_AD_to_forty_2(self):
         if self.player1:
-            print(4)
             self.score_dict['player2']['points'] = 40
         if self.player2:
-            print(5)
             self.score_dict['player2']['points'] = 0
             self.score_dict['player1']['points'] = 0
             self.score_dict['player2']['games'] += 1
@@ -136,7 +126,7 @@ class Service:
         elif self.score_dict['player2']['sets'] == 2:  # победа 2 игрока
             self.match.winner = self.match.player2
 
-    def update_match_in_db(self):
-        match = DAO().update_match(self.match)
-        match.score = json.loads(match.score)
-        return match
+    # def update_match_in_db(self):
+    #     match = DAO().update_match(self.match)
+    #     match.score = json.loads(match.score)
+    #     return match

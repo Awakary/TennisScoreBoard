@@ -79,3 +79,4 @@ class DAO:
     def calculate_quantity_of_objects(self, queryset):
         return queryset.count()
 
+

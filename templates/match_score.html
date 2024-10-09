@@ -6,22 +6,18 @@
       <meta charset="UTF-8">
       <title>Match score</title>
   </head>
-  <body class="img2">
-        <div style="margin-top: 20px">
+  <body class="green_fon">
+        <div style="margin-top: 20px" >
             <a href='/' class="main_button">Main page <<</a>
+            <a href='/new_match' class="back_button">Back <<</a>
         </div>
        <h1 style="text-align-last: center">Match score {{match.Player1.name}} vs {{match.Player2.name}} </h1>
        <div style="text-align-last: center">
-
-
-<!--         <img alt="" src="image">-->
     <table class="table">
            <tr>
                <th>Players</th>
                {% for key in match.score.player1 %}
-<!--               {% if key != "tie_break" %}-->
                <th> {{ key  }}</th>
-<!--               {% endif %}-->
                {% endfor %}
            </tr>
            <tr>
@@ -83,24 +79,6 @@
        </div>
   </body>
 </html>
-<style>
-
-
-  /*   .table {*/
-  /*  width: 300px;*/
-  /*  color: #000000;*/
-  /*       bgcolor: #000000;*/
-  /*  !* центрируем таблицу *!*/
-  /*  margin: auto;*/
-  /*  !* выравнивание текста внутри ячеек *!*/
-  /*  text-align: center;*/
-  /*  !* делаем границы красивыми *!*/
-  /*  border-collapse: collapse;*/
-  /*  !*!* делаем видимыми границы у таблицы *!*!*/
-  /*  !*border: 1px solid #333;*!*/
-  /*}*/
-
-</style>
 <script>
     const img = new Image (); img.src="/static/images/fon.jpg";
 
