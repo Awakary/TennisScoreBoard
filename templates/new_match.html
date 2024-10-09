@@ -1,45 +1,45 @@
 <!DOCTYPE html>
-<html lang="en" >
-  <head>
-      <link rel=stylesheet type="text/css" href="../static/normalize.css">
-      <link rel=stylesheet type="text/css" href="../static/styles.css">
-      <meta charset="UTF-8">
-      <title>New match</title>
-  </head>
-  <body class="cover">
-        <div style="margin-top: 20px">
-            <a href='/' class="main_button">Main page <<</a>
-        </div>
-       <h1 style="text-align-last: center">New match</h1>
-       <div style="text-align-last: center">
-           <form action='/new_match' method="post">
-                <div>
-                   <label for="player1_name" class="player">Player 1</label>
-                    <input class="inputer"
-                      type="text"
-                      id="player1_name"
-                      name="player1"
-                      size="20" required
-                      placeholder="Введите имя игрока 1"
-                      minlength="2"
-                      maxlength="20" />
-                    <span class="validity"></span>
-               </div>
-               <div>
-                   <label for="player2_name"  class="player">Player 2</label>
-                    <input class="inputer"
-                       type="text"
-                       id="player2_name"
-                       name="player2"
-                       placeholder="Введите имя игрока 2"
-                       minlength="2"
-                       maxlength="20" />
-                     <span class="validity"></span>
-               </div>
-           <button type="submit" class="creater">Create new match</button>
-           </form>
-       </div>
-  </body>
+<html lang="en">
+<head>
+	<link href="../static/normalize.css" rel=stylesheet type="text/css">
+	<link href="../static/styles.css" rel=stylesheet type="text/css">
+	<meta charset="UTF-8">
+	<title>New match</title>
+</head>
+<body class="cover">
+<div style="margin-top: 20px">
+	<a class="main_button" href='/'>Main page <<</a>
+</div>
+<h1 style="text-align-last: center">New match</h1>
+<div style="text-align-last: center">
+	<form action='/new_match' method="post">
+		<div>
+			<label class="player" for="player1_name">Player 1</label>
+			<input class="inputer"
+				   id="player1_name"
+				   maxlength="20"
+				   minlength="2"
+				   name="player1" placeholder="Введите имя игрока 1"
+				   required
+				   size="20"
+				   type="text"/>
+			<span class="validity"></span>
+		</div>
+		<div>
+			<label class="player" for="player2_name">Player 2</label>
+			<input class="inputer"
+				   id="player2_name"
+				   maxlength="20"
+				   minlength="2"
+				   name="player2"
+				   placeholder="Введите имя игрока 2"
+				   type="text"/>
+			<span class="validity"></span>
+		</div>
+		<button class="creater" type="submit">Create new match</button>
+	</form>
+</div>
+</body>
 </html>
 
 

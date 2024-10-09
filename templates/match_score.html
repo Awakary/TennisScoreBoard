@@ -1,87 +1,87 @@
 <!DOCTYPE html >
-<html lang="en" >
-  <head >
-      <link rel=stylesheet type="text/css" href="../static/normalize.css">
-      <link rel=stylesheet type="text/css" href="../static/styles.css">
-      <meta charset="UTF-8">
-      <title>Match score</title>
-  </head>
-  <body class="green_fon">
-        <div style="margin-top: 20px" >
-            <a href='/' class="main_button">Main page <<</a>
-            <a href='/new_match' class="back_button">Back <<</a>
-        </div>
-       <h1 style="text-align-last: center">Match score {{match.Player1.name}} vs {{match.Player2.name}} </h1>
-       <div style="text-align-last: center">
-    <table class="table">
-           <tr>
-               <th>Players</th>
-               {% for key in match.score.player1 %}
-               <th> {{ key  }}</th>
-               {% endfor %}
-           </tr>
-           <tr>
-               <th>
-                   <form action='/match_score' method="post">
-                    <div >
-                        <div class="row">
-                        <p class="text">{{match.Player1.name}}</p>
-                         {% if match.player1 == match.winner %}
-                        <p> &#127942 </p>
-                        {% endif %}
-                        </div>
-                        {% if not match.winner %}
-                        <button
-                            class="ball"
-                            type="submit"
-                            name="player1"
-                            value="{{match.player1}}">Ball
-                       <input type="hidden" name="uuid" value="{{match.uuid}}">
-                       </button>
-                        {% endif %}
-                    </div>
-                 </form>
-               </th>
-               {% for key, value in match.score.player1.items() %}
-                 <th> {{ value }}</th>
-               {% endfor %}
-           </tr>
-           <tr>
-               <th>
-                   <form action='/match_score' method="post">
-                    <div>
-                        <div class="row">
-                        <p class="text">{{match.Player2.name}}</p>
-                        {% if match.player2 == match.winner %}
-                        <p> &#127942 </p>
-                        {% endif %}
-                        </div>
-                        {% if not match.winner %}
-                        <button
-                            class="ball"
-                            type="submit"
-                            name="player2"
-                            value="{{match.player2}}">Ball
-                            <input type="hidden" name="uuid" value="{{match.uuid}}">
-                        </button>
-                        {% endif %}
-                    </div>
-                 </form>
-               </th>
-               {% for key, value in match.score.player2.items() %}
-               <th>{{ value }}</th>
-               {% endfor %}
-           </tr>
-    </table>
-           {% if match.winner %}
-           <h1 class="white_text_big"> Match finished</h1>
-           {% endif %}
-       </div>
-  </body>
+<html lang="en">
+<head>
+	<link href="../static/normalize.css" rel=stylesheet type="text/css">
+	<link href="../static/styles.css" rel=stylesheet type="text/css">
+	<meta charset="UTF-8">
+	<title>Match score</title>
+</head>
+<body class="green_fon">
+<div style="margin-top: 20px">
+	<a class="main_button" href='/'>Main page <<</a>
+	<a class="back_button" href='/new_match'>Back <<</a>
+</div>
+<h1 style="text-align-last: center">Match score {{match.Player1.name}} vs {{match.Player2.name}} </h1>
+<div style="text-align-last: center">
+	<table class="table">
+		<tr>
+			<th>Players</th>
+			{% for key in match.score.player1 %}
+			<th> {{ key }}</th>
+			{% endfor %}
+		</tr>
+		<tr>
+			<th>
+				<form action='/match_score' method="post">
+					<div>
+						<div class="row">
+							<p class="text">{{match.Player1.name}}</p>
+							{% if match.player1 == match.winner %}
+							<p> &#127942 </p>
+							{% endif %}
+						</div>
+						{% if not match.winner %}
+						<button
+								class="ball"
+								name="player1"
+								type="submit"
+								value="{{match.player1}}">Ball
+							<input name="uuid" type="hidden" value="{{match.uuid}}">
+						</button>
+						{% endif %}
+					</div>
+				</form>
+			</th>
+			{% for key, value in match.score.player1.items() %}
+			<th> {{ value }}</th>
+			{% endfor %}
+		</tr>
+		<tr>
+			<th>
+				<form action='/match_score' method="post">
+					<div>
+						<div class="row">
+							<p class="text">{{match.Player2.name}}</p>
+							{% if match.player2 == match.winner %}
+							<p> &#127942 </p>
+							{% endif %}
+						</div>
+						{% if not match.winner %}
+						<button
+								class="ball"
+								name="player2"
+								type="submit"
+								value="{{match.player2}}">Ball
+							<input name="uuid" type="hidden" value="{{match.uuid}}">
+						</button>
+						{% endif %}
+					</div>
+				</form>
+			</th>
+			{% for key, value in match.score.player2.items() %}
+			<th>{{ value }}</th>
+			{% endfor %}
+		</tr>
+	</table>
+	{% if match.winner %}
+	<h1 class="white_text_big"> Match finished</h1>
+	{% endif %}
+</div>
+</body>
 </html>
 <script>
-    const img = new Image (); img.src="/static/images/fon.jpg";
-
+	const img = new Image();
+	img.src = "/static/images/fon.jpg";
 
 
 </script>

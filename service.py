@@ -1,7 +1,5 @@
 import json
 
-from session import DAO
-
 
 class Service:
     def __init__(self, params, match):
@@ -29,7 +27,6 @@ class Service:
             self.process_game()
         self.check_advantage()
         self.determine_winner()
-        # return self.update_match_in_db()
         return self.match
 
     def get_player_score(self):
@@ -125,8 +122,3 @@ class Service:
             self.match.winner = self.match.player1
         elif self.score_dict['player2']['sets'] == 2:  # победа 2 игрока
             self.match.winner = self.match.player2
-
-    # def update_match_in_db(self):
-    #     match = DAO().update_match(self.match)
-    #     match.score = json.loads(match.score)
-    #     return match
