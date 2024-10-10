@@ -1,11 +1,11 @@
 import json
 import uuid
 
-from sqlalchemy import create_engine, func, or_, table
+from sqlalchemy import create_engine, or_
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy.sql import text
 
-from models import Match, Player
+
+from db.models import Match, Player
 from settings import DB_URL
 
 
@@ -48,7 +48,7 @@ class DAO:
         with self.session(autoflush=False, bind=self.engine, expire_on_commit=False) as db:
             matches = db.query(Match).filter(Match.winner != None).order_by(Match.id)
             if params:
-                player_name = params.get('filtered_param', None)
+                player_name = params.get('filter_by_player_name', None)
                 if player_name:
                     matches = matches.filter(or_(Match.Player2.has(name=player_name),
                                                  Match.Player1.has(name=player_name)))

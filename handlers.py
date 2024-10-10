@@ -1,18 +1,19 @@
 import json
-from parser import Parser
+from utils.parser import Parser
 
-from exceptions import (IncorrectPlayerNameException, NotFullFormException,
-                        SamePlayerNameException, NotFoundMatch)
-from pagination import Pagination
-from render import Render
+from utils.exceptions import (IncorrectPlayerNameException, NotFullFormException,
+                              SamePlayerNameException, NotFoundMatch)
+from utils.pagination import Pagination
+from utils.render import Render
 from service import Service
-from session import DAO
+from db.dao import DAO
 
 
 class Handler:
 
-    def __init__(self, method,  body, body_size):
+    def __init__(self, method,  body, body_size, query_string):
         self.method = method
+        self.query_string = query_string
         self.body = body
         if body_size:
             self.body_size = int(body_size)
@@ -39,28 +40,22 @@ class MainPageHandler(Handler):
 class MatchesHandler(Handler):
 
     def get(self):
-        matches = DAO().get_finished_matches()
+        if self.query_string:
+            query_params = Parser.parse_params(query_string=self.query_string)
+            matches = DAO().get_finished_matches(params=query_params)
+            page = query_params.get('page', 1)
+            last_page = query_params.get('last_page', None)
+            back_page = query_params.get('back_page', None)
+            filtered_param = query_params.get('filter_by_player_name', None)
+            pagination = Pagination(queryset=matches,
+                                    last_page=last_page,
+                                    back_page=back_page,
+                                    page=page,
+                                    filtered_param=filtered_param)
+        else:
+            matches = DAO().get_finished_matches()
+            pagination = Pagination(queryset=matches, page=1)
         players = DAO().get_players()
-        pagination = Pagination(queryset=matches, page_number=1)
-        pagination_matches = pagination.get_objects_for_page()
-        return Render().render_template(file_name='matches.html',
-                                        pagination=pagination,
-                                        render_objects={'matches': pagination_matches,
-                                                        'players': players})
-
-    def post(self):
-        params = Parser.parse_params(self.body, self.body_size)
-        matches = DAO().get_finished_matches(params=params)
-        players = DAO(). get_players()
-        page_number = params.get('page_number', 1)
-        last_page = params.get('last_page', None)
-        back_page = params.get('back_page', None)
-        filtered_param = params.get('filtered_param', None)
-        pagination = Pagination(queryset=matches,
-                                last_page=last_page,
-                                back_page=back_page,
-                                page_number=page_number,
-                                filtered_param=filtered_param)
         pagination_matches = pagination.get_objects_for_page()
         return Render().render_template(file_name='matches.html',
                                         pagination=pagination,
@@ -73,7 +68,7 @@ class NewMatchHandler(Handler):
         return Render().render_template(file_name='new_match.html')
 
     def post(self):
-        params = Parser.parse_params(self.body, self.body_size)
+        params = Parser.parse_params(body=self.body, body_size=self.body_size)
         player1 = params.get('player1', None)
         player2 = params.get('player2', None)
         if not (player1 and player2):
@@ -90,11 +85,16 @@ class NewMatchHandler(Handler):
 
 class MatchScoreHandler(Handler):
 
-    # def get(self):
-    #     return Render().render_template(file_name='match_score.html',
-    #                                     render_objects=match)
+    def get(self):
+        query_params = Parser.parse_params(query_string=self.query_string)
+        match_uuid = query_params.get('uuid', None)
+        match = DAO().get_match(match_uuid)
+        match.score = json.loads(match.score)
+        return Render().render_template(file_name='match_score.html',
+                                        render_objects=match)
+
     def post(self):
-        params = Parser.parse_params(self.body, self.body_size)
+        params = Parser.parse_params(body=self.body, body_size=self.body_size)
         match_uuid = params.get('uuid', None)
         match = DAO().get_match(match_uuid)
         try:
@@ -131,7 +131,7 @@ class FonHandler(Handler):
 class ErrorHandler(Handler):
 
     def __init__(self, e, path):
-        super().__init__(method=None, body=None, body_size=0)
+        super().__init__(method=None, body=None, body_size=0, query_string=None)
         self.e = e
         self.path = path
 

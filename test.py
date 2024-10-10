@@ -1,7 +1,7 @@
 import json
 import unittest
 
-from models import Match
+from db.models import Match
 from service import Service
 
 

@@ -1,4 +1,4 @@
-from exceptions import NotFoundPathException
+from utils.exceptions import NotFoundPathException
 from handlers import (FonHandler, MainPageHandler, MatchesHandler,
                       MatchScoreHandler, NewMatchHandler, NormalizeHandler,
                       StylesHandler)
@@ -21,10 +21,11 @@ class Router:
                         '/static/images/fon.jpg': FonHandler}
         return all_handlers
 
-    def get_handler(self, method, body, body_size):
+    def get_handler(self, method, body, body_size, query_string):
+
         handler = self.all_handlers.get(self.path, None)
         if handler:
-            return handler(method, body, body_size).run_function()
+            return handler(method, body, body_size, query_string).run_function()
         else:
             raise NotFoundPathException()
 

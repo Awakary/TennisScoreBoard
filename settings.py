@@ -1,7 +1,6 @@
 import os
 
 from dotenv import load_dotenv
-from sqlalchemy import URL
 
 load_dotenv()
 

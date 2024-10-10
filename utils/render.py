@@ -1,7 +1,5 @@
 from jinja2 import Environment, FileSystemLoader
 
-from utils import selected_matches
-
 
 class Render:
 
@@ -10,7 +8,6 @@ class Render:
 
     def render_template(self, file_name, render_objects=None, pagination=None):
         template = self.env.get_template(file_name)
-        self.env.filters['selected_matches'] = selected_matches
 
         if file_name == 'matches.html':
             return template.render(matches=render_objects['matches'],
