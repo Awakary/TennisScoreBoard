@@ -56,8 +56,8 @@ class DAO:
 
     def create_new_match(self, player1_id, player2_id):
         with self.session(autoflush=False, bind=self.engine, expire_on_commit=False) as db:
-            score = {'player1': {'points': 0, 'games': 0,  'sets': 0},
-                     'player2': {'points': 0, 'games': 0, 'sets': 0}}
+            score = {'player1': {'points': 0, 'games': 0,  'sets': 0, 'completed_sets': []},
+                     'player2': {'points': 0, 'games': 0, 'sets': 0, 'completed_sets': []}}
             score = json.dumps(score)
             new_match = Match(player1=player1_id,
                               player2=player2_id,

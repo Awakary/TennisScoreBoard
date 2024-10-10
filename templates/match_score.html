@@ -16,15 +16,24 @@
 	<table class="table">
 		<tr>
 			<th>players</th>
-			{% for key in match.score.player1 %}
-			<th> {{ key }}</th>
-			{% endfor %}
+            {% if match.winner %}
+                     <th> sets</th>
+            {% else %}
+			    {% for key in ['points', 'games', 'sets'] %}
+                     <th> {{ key }}</th>
+                {% endfor %}
+            {% endif %}
+            {% if match.score.player1.completed_sets or match.score.player2.completed_sets%}
+                {% for i in range(match.score.player1.completed_sets|length) %}
+                <th>set {{i + 1}}</th>
+                {% endfor %}
+            {% endif %}
 		</tr>
 		<tr>
 			<th>
 				<form action='/match_score' method="post">
 					<div>
-						<div>
+						<div class="row">
 							<p class="text">{{match.Player1.name}}</p>
 							{% if match.player1 == match.winner %}
 							<p> &#127942 </p>
@@ -42,15 +51,28 @@
 					</div>
 				</form>
 			</th>
-			{% for key, value in match.score.player1.items() %}
-			<th> {{ value }}</th>
-			{% endfor %}
+                {% if not match.winner %}
+                    {% for key, value in match.score.player1.items() %}
+                         {% if key != 'completed_sets' %}
+                        <th> {{ value }}</th>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <th> {{  match.score.player1.sets }}</th>
+                {% endif %}
+
+            {% if match.score.player1.completed_sets%}
+                {% for i in match.score.player1.completed_sets %}
+                <th> {{i}}</th>
+                {% endfor %}
+            {% endif %}
 		</tr>
+
 		<tr>
 			<th>
 				<form action='/match_score' method="post">
 					<div>
-						<div>
+						<div class="row">
 							<p class="text">{{match.Player2.name}}</p>
 							{% if match.player2 == match.winner %}
 							<p> &#127942 </p>
@@ -68,9 +90,20 @@
 					</div>
 				</form>
 			</th>
-			{% for key, value in match.score.player2.items() %}
-			<th>{{ value }}</th>
-			{% endfor %}
+			{% if not match.winner %}
+                    {% for key, value in match.score.player2.items() %}
+                        {% if key != 'completed_sets' %}
+                        <th> {{ value }}</th>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <th> {{  match.score.player2.sets }}</th>
+                {% endif %}
+            {% if match.score.player2.completed_sets%}
+                {% for i in match.score.player2.completed_sets %}
+                <th> {{i}}</th>
+                {% endfor %}
+            {% endif %}
 		</tr>
 	</table>
 	{% if match.winner %}
@@ -79,10 +112,5 @@
 </div>
 </body>
 </html>
-<script>
-	const img = new Image();
-	img.src = "/static/images/fon.jpg";
 
-
-</script>
 

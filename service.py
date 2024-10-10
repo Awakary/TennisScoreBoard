@@ -88,6 +88,8 @@ class Service:
                 self.score_dict['player1']['points'] += 1
             else:
                 self.score_dict['player1']['sets'] += 1
+                self.score_dict['player1']['completed_sets'].append(self.score_dict['player1']['games'])
+                self.score_dict['player2']['completed_sets'].append(self.score_dict['player2']['games'])
                 self.score_dict['player1']['points'] = 0
                 self.score_dict['player2']['points'] = 0
                 self.score_dict['player1']['games'] = 0
@@ -97,6 +99,8 @@ class Service:
                 self.score_dict['player2']['points'] += 1
             else:
                 self.score_dict['player2']['sets'] += 1
+                self.score_dict['player1']['completed_sets'].append(self.score_dict['player1']['games'])
+                self.score_dict['player2']['completed_sets'].append(self.score_dict['player2']['games'])
                 self.score_dict['player2']['points'] = 0
                 self.score_dict['player1']['points'] = 0
                 self.score_dict['player1']['games'] = 0
@@ -107,12 +111,16 @@ class Service:
                 and self.score_dict['player2']['games'] <= 4
                 and not self.tai_brake):
             self.score_dict['player1']['sets'] += 1
+            self.score_dict['player1']['completed_sets'].append(self.score_dict['player1']['games'])
+            self.score_dict['player2']['completed_sets'].append(self.score_dict['player2']['games'])
             self.score_dict['player2']['games'] = 0
             self.score_dict['player1']['games'] = 0
         elif (self.score_dict['player2']['games'] == 6
               and self.score_dict['player1']['games'] <= 4
               and not self.tai_brake):
             self.score_dict['player2']['sets'] += 1
+            self.score_dict['player1']['completed_sets'].append(self.score_dict['player1']['games'])
+            self.score_dict['player2']['completed_sets'].append(self.score_dict['player2']['games'])
             self.score_dict['player2']['games'] = 0
             self.score_dict['player1']['games'] = 0
 
