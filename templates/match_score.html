@@ -24,7 +24,7 @@
 			<th>
 				<form action='/match_score' method="post">
 					<div>
-						<div class="row">
+						<div>
 							<p class="text">{{match.Player1.name}}</p>
 							{% if match.player1 == match.winner %}
 							<p> &#127942 </p>
@@ -50,7 +50,7 @@
 			<th>
 				<form action='/match_score' method="post">
 					<div>
-						<div class="row">
+						<div>
 							<p class="text">{{match.Player2.name}}</p>
 							{% if match.player2 == match.winner %}
 							<p> &#127942 </p>

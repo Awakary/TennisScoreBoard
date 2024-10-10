@@ -74,8 +74,8 @@ body {
 }
 
 .page_text {
-    color: #131975; /* ��вет текста */
-    font-size: 1.3em; /* Размер текста */
+    color: #000000; /* ��вет текста */
+    font-size: 1.5em; /* Размер текста */
     font-weight: bold; /* ��ирный шрифт */
     margin: 0;
 }

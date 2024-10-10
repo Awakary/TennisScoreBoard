@@ -24,6 +24,6 @@ def app(environ, start_response):
     return response.content
 
 
-with make_server('', 8000, app) as httpd:
+with make_server('', 8001, app) as httpd:
     print("Запуск сервера")
     httpd.serve_forever()
