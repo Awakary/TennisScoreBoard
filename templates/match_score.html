@@ -20,7 +20,11 @@
                      <th> sets</th>
             {% else %}
 			    {% for key in ['points', 'games', 'sets'] %}
+{#                    {%  if key == 'sets' %}#}
+{#                     <th class="purple_fon"> {{ key }}</th>#}
+{#                    {% else %}#}
                      <th> {{ key }}</th>
+{#                    {%  endif %}#}
                 {% endfor %}
             {% endif %}
             {% if match.score.player1.completed_sets or match.score.player2.completed_sets%}
@@ -53,12 +57,15 @@
 			</th>
                 {% if not match.winner %}
                     {% for key, value in match.score.player1.items() %}
-                         {% if key != 'completed_sets' %}
+                        {% if key != 'completed_sets' and key != 'sets' %}
                         <th> {{ value }}</th>
+                        {% endif %}
+                         {% if key == 'sets'%}
+                        <th class = "purple_fon"> {{ value }}</th>
                         {% endif %}
                     {% endfor %}
                 {% else %}
-                    <th> {{  match.score.player1.sets }}</th>
+                    <th class = "purple_fon"> {{  match.score.player1.sets }}</th>
                 {% endif %}
 
             {% if match.score.player1.completed_sets%}
@@ -92,12 +99,15 @@
 			</th>
 			{% if not match.winner %}
                     {% for key, value in match.score.player2.items() %}
-                        {% if key != 'completed_sets' %}
+                        {% if key != 'completed_sets' and key != 'sets' %}
                         <th> {{ value }}</th>
+                        {% endif %}
+                         {% if key == 'sets'%}
+                        <th class = "purple_fon"> {{ value }}</th>
                         {% endif %}
                     {% endfor %}
                 {% else %}
-                    <th> {{  match.score.player2.sets }}</th>
+                    <th class = "purple_fon"> {{  match.score.player2.sets }}</th>
                 {% endif %}
             {% if match.score.player2.completed_sets%}
                 {% for i in match.score.player2.completed_sets %}
