@@ -107,16 +107,16 @@ class Service:
                 self.score_dict['player2']['games'] = 0
 
     def check_advantage(self):
-        if (self.score_dict['player1']['games'] == 6
-                and self.score_dict['player2']['games'] <= 4
+        if (self.score_dict['player1']['games'] >= 6
+                and self.score_dict['player1']['games'] - self.score_dict['player2']['games'] >= 2
                 and not self.tai_brake):
             self.score_dict['player1']['sets'] += 1
             self.score_dict['player1']['completed_sets'].append(self.score_dict['player1']['games'])
             self.score_dict['player2']['completed_sets'].append(self.score_dict['player2']['games'])
             self.score_dict['player2']['games'] = 0
             self.score_dict['player1']['games'] = 0
-        elif (self.score_dict['player2']['games'] == 6
-              and self.score_dict['player1']['games'] <= 4
+        elif (self.score_dict['player2']['games'] >= 6
+              and self.score_dict['player2']['games'] - self.score_dict['player1']['games'] >= 2
               and not self.tai_brake):
             self.score_dict['player2']['sets'] += 1
             self.score_dict['player1']['completed_sets'].append(self.score_dict['player1']['games'])
