@@ -88,7 +88,7 @@ class Service:
                 self.score_dict['player1']['points'] += 1
             else:
                 self.score_dict['player1']['sets'] += 1
-                self.score_dict['player1']['completed_sets'].append(self.score_dict['player1']['games'])
+                self.score_dict['player1']['completed_sets'].append(self.score_dict['player1']['games']+1)
                 self.score_dict['player2']['completed_sets'].append(self.score_dict['player2']['games'])
                 self.score_dict['player1']['points'] = 0
                 self.score_dict['player2']['points'] = 0
@@ -100,7 +100,7 @@ class Service:
             else:
                 self.score_dict['player2']['sets'] += 1
                 self.score_dict['player1']['completed_sets'].append(self.score_dict['player1']['games'])
-                self.score_dict['player2']['completed_sets'].append(self.score_dict['player2']['games'])
+                self.score_dict['player2']['completed_sets'].append(self.score_dict['player2']['games']+1)
                 self.score_dict['player2']['points'] = 0
                 self.score_dict['player1']['points'] = 0
                 self.score_dict['player1']['games'] = 0
