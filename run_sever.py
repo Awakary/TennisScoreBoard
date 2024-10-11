@@ -18,8 +18,8 @@ def app(environ, start_response):
         response = Response(handler, path)
     except ExceptionWithMessage as e:
         response = Response(ErrorHandler(e, path).get())
-    except Exception as e:
-        response = Response(ErrorHandler(UnknownErrorException(e), path).get())
+    # except Exception as e:
+    #     response = Response(ErrorHandler(UnknownErrorException(e), path).get())
     start_response(response.status, response.headers)
     return response.content
 
