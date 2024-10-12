@@ -57,6 +57,8 @@ class MatchesHandler(Handler):
             pagination = Pagination(queryset=matches, page=1)
         players = DAO().get_players()
         pagination_matches = pagination.get_objects_for_page()
+        for match in pagination_matches:
+            match.score = json.loads(match.score)
         return Render().render_template(file_name='matches.html',
                                         pagination=pagination,
                                         render_objects={'matches': pagination_matches,

@@ -38,6 +38,7 @@
 		<th class="text">Player1</th>
 		<th class="text">Player2</th>
 		<th class="text">Winner &#127942;</th>
+        <th class="text">Score</th>
 	</tr>
 	<tr>
 		{% for match in matches %}
@@ -53,6 +54,12 @@
 		</th>
 		<th>
 			{{ match.Winner.name}}
+		</th>
+            <th>
+			{{ match.score.player1.sets}} : {{ match.score.player2.sets}}
+            sets:{% for i, v in  zip(match.score.player1.completed_sets, match.score.player2.completed_sets) %}
+                {{i}}:{{v}}
+            {% endfor %}
 		</th>
 	</tr>
 	{% endfor %}

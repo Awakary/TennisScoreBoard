@@ -6,8 +6,10 @@ class Render:
     def __init__(self):
         self.env = Environment(loader=FileSystemLoader('templates'))
 
+
     def render_template(self, file_name, render_objects=None, pagination=None):
         template = self.env.get_template(file_name)
+        self.env.globals.update(zip=zip)
 
         if file_name == 'matches.html':
             return template.render(matches=render_objects['matches'],
