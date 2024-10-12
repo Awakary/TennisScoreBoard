@@ -1,10 +1,10 @@
 
 from wsgiref.simple_server import make_server
 
-from utils.exceptions import ExceptionWithMessage, UnknownErrorException
 from handlers import ErrorHandler
-from utils.response import Response
 from router import Router
+from utils.exceptions import ExceptionWithMessage, UnknownErrorException
+from utils.response import Response
 
 
 def app(environ, start_response):

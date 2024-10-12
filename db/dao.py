@@ -4,7 +4,6 @@ import uuid
 from sqlalchemy import create_engine, or_
 from sqlalchemy.orm import sessionmaker
 
-
 from db.models import Match, Player
 from settings import DB_URL
 

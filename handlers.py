@@ -1,12 +1,12 @@
 import json
-from utils.parser import Parser
 
-from utils.exceptions import (IncorrectPlayerNameException, NotFullFormException,
-                              SamePlayerNameException, NotFoundMatch)
-from utils.pagination import Pagination
-from utils.render import Render
-from service import Service
 from db.dao import DAO
+from service import Service
+from utils.exceptions import (IncorrectPlayerNameException, NotFoundMatch,
+                              NotFullFormException, SamePlayerNameException)
+from utils.pagination import Pagination
+from utils.parser import Parser
+from utils.render import Render
 
 
 class Handler:

@@ -1,7 +1,7 @@
-from utils.exceptions import NotFoundPathException
 from handlers import (FonHandler, MainPageHandler, MatchesHandler,
                       MatchScoreHandler, NewMatchHandler, NormalizeHandler,
                       StylesHandler)
+from utils.exceptions import NotFoundPathException
 
 
 class Router:

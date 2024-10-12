@@ -1,14 +1,11 @@
 import json
-import random
 import os
+import random
 import sys
 
 sys.path.append(os.getcwd())
 
 from db.dao import DAO
-
-
-
 
 players = ['Stan', 'Alex', 'Max', 'Luis', 'Roman', 'Nick', 'Ban', 'Ron', 'Ted', 'Martin', 'Leo'
            'Stan', 'Alex', 'Max', 'Luis', 'Roman', 'Nick', 'Ban', 'Ron', 'Ted', 'Martin', 'Leo']

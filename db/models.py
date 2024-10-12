@@ -1,5 +1,4 @@
-from sqlalchemy import (JSON,  Column, ForeignKey,
-                        Integer, String, create_engine)
+from sqlalchemy import JSON, Column, ForeignKey, Integer, String, create_engine
 from sqlalchemy.orm import DeclarativeBase, relationship
 
 from settings import DB_URL
