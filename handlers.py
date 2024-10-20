@@ -93,8 +93,11 @@ class MatchScoreHandler(Handler):
         match_uuid = query_params.get('uuid', None)
         if not match_uuid:
             raise NotParamUUID()
-        match = DAO().get_match(match_uuid)
-        match.score = json.loads(match.score)
+        try:
+            match = DAO().get_match(match_uuid)
+            match.score = json.loads(match.score)
+        except AttributeError:
+            raise NotFoundMatch()
         return Render().render_template(file_name='match_score.html',
                                         render_objects=match)
 
