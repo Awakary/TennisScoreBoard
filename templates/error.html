@@ -14,11 +14,11 @@
 		{% if error.message != 'Нет такого url'%}
 		<div style="margin-top: 20px">
 			{% if error.message == 'Нет матча с таким uuid' %}
-			<a class="creater" href='/new-match'>Back <<</a>
-				{% if error.message != 'Не указан uuid' %}
-					<a class="creater" href={{error.path}}>Back <<</a>
-				{% endif %}
+				<a class="creater" href='/new-match'>Back <<</a>
 			{% endif %}
+				{% if error.message != 'Не указан uuid' %}
+			<a class="creater" href={{error.path}}>Back <<</a>
+				{% endif %}
 		</div>
 		{% endif %}
 		<div style="margin-top: 80px">
