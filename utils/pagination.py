@@ -2,7 +2,6 @@ from db.dao import DAO
 
 
 class Pagination:
-
     page_size = 3
 
     def __init__(self, queryset, page, filtered_param=None,
@@ -56,7 +55,4 @@ class Pagination:
 
     def get_objects_for_page(self):
         return self.queryset[int(self.page) * self.page_size -
-                             Pagination.page_size:int(self.page)*self.page_size]
-
-
-
+                             Pagination.page_size:int(self.page) * self.page_size]

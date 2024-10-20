@@ -12,4 +12,3 @@ DB = {'drivername': os.environ.get('DB_DRIVER'),
       'database': os.environ.get('DB_NAME')}
 
 DB_URL = f'''{DB['drivername']}://{DB['username']}:{DB['password']}@{DB['host']}:{DB['port']}/{DB['database']}'''
-

@@ -17,4 +17,3 @@ class Response:
         if isinstance(handler, bytes):
             return [handler]
         return [handler.encode('utf-8')]
-

@@ -11,7 +11,6 @@ class Base(DeclarativeBase):
 
 
 class Player(Base):
-
     __tablename__ = "Player"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -19,7 +18,6 @@ class Player(Base):
 
 
 class Match(Base):
-
     __tablename__ = "Match"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -46,4 +44,3 @@ class Match(Base):
 
 
 Base.metadata.create_all(bind=engine)
-

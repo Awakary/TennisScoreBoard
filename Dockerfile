@@ -5,6 +5,10 @@ WORKDIR /app
 COPY . .
 
 RUN pip install --upgrade pip
-RUN pip install -r TennisScoreBoard/requirements.txt
+RUN pip install -r requirements.txt
 
-CMD ["python", "app/run_server.py"]
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+
+CMD ["python", "run_server.py"]

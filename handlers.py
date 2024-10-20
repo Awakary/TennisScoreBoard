@@ -141,7 +141,3 @@ class ErrorHandler(Handler):
         setattr(self.e, 'path', self.path)
         return Render().render_template(file_name='error.html',
                                         render_objects=self.e)
-
-
-
-

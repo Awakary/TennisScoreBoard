@@ -6,7 +6,6 @@ class Render:
     def __init__(self):
         self.env = Environment(loader=FileSystemLoader('templates'))
 
-
     def render_template(self, file_name, render_objects=None, pagination=None):
         template = self.env.get_template(file_name)
         self.env.globals.update(zip=zip)
@@ -20,8 +19,3 @@ class Render:
         if file_name == 'error.html':
             return template.render(error=render_objects)
         return template.render()
-
-
-
-
-
