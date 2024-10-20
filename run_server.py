@@ -28,4 +28,3 @@ with make_server('', 8001, app) as httpd:
     print("Запуск сервера")
     fill_db()
     httpd.serve_forever()
-

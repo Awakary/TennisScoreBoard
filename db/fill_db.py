@@ -24,5 +24,3 @@ def fill_db():
             DAO().update_match(match)
         uncompleted_match = DAO().create_new_match(DAO().get_player('Stan'), DAO().get_player('Alex'),
                                                    fill_uuid='1cd3d908-2acb-43eb-ac15-6b03d8ae9fep')
-
-

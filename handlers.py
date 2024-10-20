@@ -3,7 +3,8 @@ import json
 from db.dao import DAO
 from service import Service
 from utils.exceptions import (IncorrectPlayerNameException, NotFoundMatch,
-                              NotFullFormException, SamePlayerNameException, NotParamUUID)
+                              NotFullFormException, NotParamUUID,
+                              SamePlayerNameException)
 from utils.pagination import Pagination
 from utils.parser import Parser
 from utils.render import Render

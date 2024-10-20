@@ -28,4 +28,3 @@ class Router:
             return handler(method, body, body_size, query_string).run_function()
         else:
             raise NotFoundPathException()
-

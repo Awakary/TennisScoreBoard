@@ -117,10 +117,3 @@ class TestService(unittest.TestCase):
         self.assertEqual(self.service_p1.score_dict['player1']['sets'], 2)
         self.assertEqual(self.service_p1.score_dict['player2']['sets'], 1)
 
-
-
-
-
-
-
-
