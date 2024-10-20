@@ -11,12 +11,13 @@
 <div style="text-align-last: center">
 	<h2 style="text-align-last: center">{{error.message}}</h2>
 	<div class="items">
-		{% if error.message != 'Нет такого url' %}
+		{% if error.message != 'Нет такого url'%}
 		<div style="margin-top: 20px">
 			{% if error.message == 'Нет матча с таким uuid' %}
 			<a class="creater" href='/new-match'>Back <<</a>
-			{% else %}
-			<a class="creater" href={{error.path}}>Back <<</a>
+				{% if error.message != 'Не указан uuid' %}
+					<a class="creater" href={{error.path}}>Back <<</a>
+				{% endif %}
 			{% endif %}
 		</div>
 		{% endif %}

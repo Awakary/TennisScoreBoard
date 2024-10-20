@@ -3,7 +3,7 @@ import json
 from db.dao import DAO
 from service import Service
 from utils.exceptions import (IncorrectPlayerNameException, NotFoundMatch,
-                              NotFullFormException, SamePlayerNameException)
+                              NotFullFormException, SamePlayerNameException, NotParamUUID)
 from utils.pagination import Pagination
 from utils.parser import Parser
 from utils.render import Render
@@ -88,8 +88,11 @@ class NewMatchHandler(Handler):
 class MatchScoreHandler(Handler):
 
     def get(self):
+
         query_params = Parser.parse_params(query_string=self.query_string)
         match_uuid = query_params.get('uuid', None)
+        if not match_uuid:
+            raise NotParamUUID()
         match = DAO().get_match(match_uuid)
         match.score = json.loads(match.score)
         return Render().render_template(file_name='match_score.html',
