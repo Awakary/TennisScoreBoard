@@ -14,8 +14,8 @@ class Router:
     def get_all_handlers():
         all_handlers = {'/': MainPageHandler,
                         '/matches': MatchesHandler,
-                        '/match_score': MatchScoreHandler,
-                        '/new_match': NewMatchHandler,
+                        '/match-score': MatchScoreHandler,
+                        '/new-match': NewMatchHandler,
                         '/static/normalize.css': NormalizeHandler,
                         '/static/styles.css': StylesHandler,
                         '/static/images/fon.jpg': FonHandler}

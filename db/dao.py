@@ -54,14 +54,14 @@ class DAO:
 
             return matches
 
-    def create_new_match(self, player1_id, player2_id):
+    def create_new_match(self, player1_id, player2_id, fill_uuid=None):
         with self.session(autoflush=False, bind=self.engine, expire_on_commit=False) as db:
             score = {'player1': {'points': 0, 'games': 0, 'sets': 0, 'completed_sets': []},
                      'player2': {'points': 0, 'games': 0, 'sets': 0, 'completed_sets': []}}
             score = json.dumps(score)
             new_match = Match(player1=player1_id,
                               player2=player2_id,
-                              uuid=str(uuid.uuid4()),
+                              uuid=str(uuid.uuid4()) if not fill_uuid else fill_uuid,
                               score=score)
             db.add(new_match)
             db.commit()
