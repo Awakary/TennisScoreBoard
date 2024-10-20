@@ -7,7 +7,7 @@ sys.path.append(os.getcwd())
 
 from db.dao import DAO
 
-players = ['Stan', 'Alex', 'Max', 'Luis', 'Roman', 'Nick', 'Ban', 'Ron', 'Ted', 'Martin', 'Leo'
+players = ['Stan', 'Alex', 'Max', 'Luis', 'Roman', 'Nick', 'Ban', 'Ron', 'Ted', 'Martin', 'Leo',
            'Stan', 'Alex', 'Max', 'Luis', 'Roman', 'Nick', 'Ban', 'Ron', 'Ted', 'Martin', 'Leo']
 for i in range(len(players) - 1):
     match = DAO().create_new_match(DAO().get_player(players[i]), DAO().get_player(players[i+1]))
